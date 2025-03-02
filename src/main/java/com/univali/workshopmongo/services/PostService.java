@@ -6,6 +6,8 @@ import com.univali.workshopmongo.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PostService {
 
@@ -18,6 +20,10 @@ public class PostService {
             throw new ObjectNotFoundException("Objeto nao encontrado");
         }
         return post;
+    }
+
+    public List<Post> findByTitle(String text){
+        return repo.findByTitleContainingIgnoreCase(text);
     }
 
 
