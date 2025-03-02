@@ -2,6 +2,7 @@ package com.univali.workshopmongo.config;
 
 import com.univali.workshopmongo.domain.Post;
 import com.univali.workshopmongo.domain.User;
+import com.univali.workshopmongo.dto.AuthorDTO;
 import com.univali.workshopmongo.repositories.PostRepository;
 import com.univali.workshopmongo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,10 +36,11 @@ public class Instantiation  implements CommandLineRunner {
         User amanda = new User(null,"Amanda", "amanda@gmail.com");
         User joao = new User(null,"João", "joao@gmail.com");
 
-       Post post = new Post(null,sdf.parse("21/03/2018"),"Partiu viagem!", "Vou viajar para São Paulo. Abraços!", pedro);
-       Post post2 = new Post(null, sdf.parse("23/03/2018"),"Bom dia", "Acordei feliz hoje!", pedro);
-
         userRepository.saveAll(Arrays.asList(pedro,amanda,joao));
+
+        Post post = new Post(null,sdf.parse("21/03/2018"),"Partiu viagem!", "Vou viajar para São Paulo. Abraços!", new AuthorDTO(pedro));
+        Post post2 = new Post(null, sdf.parse("23/03/2018"),"Bom dia", "Acordei feliz hoje!", new AuthorDTO(pedro));
+
         postRepository.saveAll(Arrays.asList(post,post2));
     }
 }
